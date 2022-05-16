@@ -41,8 +41,18 @@ function displayTemp(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+function search(city) {
+  let apiKey = "ff3fd882f52fb1c27e72af3c00822426";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayTemp);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 
-let apiKey = "ff3fd882f52fb1c27e72af3c00822426";
-let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=${apiKey}&units=metric`;
+search("New York");
 
-axios.get(apiURL).then(displayTemp);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
