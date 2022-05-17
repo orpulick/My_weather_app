@@ -20,6 +20,31 @@ function formatDate(timestamp) {
   }
   return `${day}, ${hours}:${mins}`;
 }
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` 
+          <div class="col-2">
+            <div class="weather-date-forecast">
+              ${day}
+            </div>
+            <img src="https://www.clipartmax.com/png/full/162-1620030_file-weather-icon-sunny-svg-sunny-weather-icon.png"
+            alt=""
+            width="50">
+            <div class="weather-forecast-temp">
+             <span class="weather-forecast-max"> 12° </span>|<span class="weather-forecast-min"> 10°</span>
+            </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemp(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -81,3 +106,4 @@ let fahrenheit = document.querySelector("#fahrenheit-link");
 fahrenheit.addEventListener("click", showFahrenheitTemp);
 
 search("New York");
+displayForecast();
