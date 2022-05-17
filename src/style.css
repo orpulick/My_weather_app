@@ -36,7 +36,7 @@ li::first-letter {
 .weather-app {
   padding: 15px;
   border: 3px solid #305973;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: white;
 }
 .weather-temperature strong {
@@ -69,4 +69,17 @@ li::first-letter {
 .search-button {
   background: #305973;
   color: #f9f9f9;
+}
+.weather-forecast {
+  margin-top: 15px;
+  text-align: center;
+  color: #305973;
+}
+
+.weather-date-forecast {
+  font-size: 18px;
+  font-weight: 700;
+}
+.weather-forecast-temp {
+  font-size: 13px;
 }
