@@ -33,20 +33,22 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 7) {
       forecastHTML =
         forecastHTML +
         ` 
-          <div class="col-2">
-            <div class="weather-date-forecast">
+          <div class="row">
+            <div class="col-4 weather-date-forecast">
               ${formatDay(forecastDay.dt)}
             </div>
+            <div class="col-4">
             <img src="http://openweathermap.org/img/wn/${
               forecastDay.weather[0].icon
             }@2x.png"
             alt=""
             width="50">
-            <div class="weather-forecast-temp">
+            </div>
+            <div class="weather-forecast-temp col-4">
              <span class="weather-forecast-max"> ${Math.round(
                forecastDay.temp.max
              )}° </span>|<span class="weather-forecast-min"> ${Math.round(
@@ -75,6 +77,7 @@ function displayTemp(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+  let feels = document.querySelector("#feels-like");
 
   celciustemp = response.data.main.temp;
 
@@ -89,7 +92,7 @@ function displayTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
+  feels.innerHTML = Math.round(response.data.main.feels_like);
   getForecast(response.data.coord);
 }
 function search(city) {
