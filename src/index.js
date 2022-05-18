@@ -8,7 +8,7 @@ function formatDate(timestamp) {
     "Friday",
     "Saturday",
   ];
-  let date = new Date(timestamp);
+  let date = new Date();
   let hours = date.getHours();
   let mins = date.getMinutes();
   let day = weekday[date.getDay()];
