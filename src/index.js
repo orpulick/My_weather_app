@@ -62,7 +62,7 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = `ff3fd882f52fb1c27e72af3c00822426`;
-  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   console.log(apiURL);
   axios.get(apiURL).then(displayForecast);
 }
@@ -94,7 +94,7 @@ function displayTemp(response) {
 }
 function search(city) {
   let apiKey = "ff3fd882f52fb1c27e72af3c00822426";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiURL).then(displayTemp);
 }
 function handleSubmit(event) {
@@ -102,31 +102,8 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  celcius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  let ftemp = Math.round((celciustemp * 9) / 5 + 32);
-  temperatureElement.innerHTML = ftemp;
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  fahrenheit.classList.remove("active");
-  celcius.classList.add("active");
-  temperatureElement.innerHTML = Math.round(celciustemp);
-}
-let celcius = document.querySelector("#celsius-link");
-celcius.addEventListener("click", showCelsiusTemp);
-
-let celciustemp = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", showFahrenheitTemp);
 
 search("New York");
